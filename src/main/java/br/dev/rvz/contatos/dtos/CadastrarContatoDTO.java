@@ -1,13 +1,7 @@
 package br.dev.rvz.contatos.dtos;
 
+import br.dev.rvz.contatos.model.Contato;
 import graphql.schema.GraphQLInputType;
-import graphql.schema.GraphQLSchemaElement;
-import graphql.schema.GraphQLTypeVisitor;
-import graphql.schema.SchemaElementChildrenContainer;
-import graphql.util.TraversalControl;
-import graphql.util.TraverserContext;
-
-import java.util.List;
 
 public class CadastrarContatoDTO implements GraphQLInputType {
 
@@ -44,23 +38,18 @@ public class CadastrarContatoDTO implements GraphQLInputType {
         this.telefone = telefone;
     }
 
-    @Override
-    public List<GraphQLSchemaElement> getChildren() {
-        return GraphQLInputType.super.getChildren();
+
+    public Contato converterDtoParaModelo() {
+        Contato contato = new Contato();
+        contato.setNomeCompleto(this.nomeCompleto);
+        contato.setEmail(this.email);
+        contato.setTelefone(this.telefone);
+
+        return contato;
     }
 
     @Override
-    public SchemaElementChildrenContainer getChildrenWithTypeReferences() {
-        return GraphQLInputType.super.getChildrenWithTypeReferences();
-    }
-
-    @Override
-    public GraphQLSchemaElement withNewChildren(SchemaElementChildrenContainer newChildren) {
-        return GraphQLInputType.super.withNewChildren(newChildren);
-    }
-
-    @Override
-    public TraversalControl accept(TraverserContext<GraphQLSchemaElement> context, GraphQLTypeVisitor visitor) {
-        return null;
+    public String getName() {
+        return this.nomeCompleto;
     }
 }

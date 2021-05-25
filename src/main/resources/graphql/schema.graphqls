@@ -1,0 +1,33 @@
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+type Query {
+    obterTodosContatos: [Contato]
+}
+
+type Contato {
+    id: ID!
+    nomeCompleto: String
+    email: String
+    telefone: String
+}
+
+input CadastrarContatoDTO {
+    nomeCompleto: String
+    email: String
+    telefone: String
+}
+
+input AtualizarContatoDTO {
+    id: Int
+    nomeCompleto: String
+    email: String
+    telefone: String
+}
+
+type Mutation {
+    cadastrarNovoContato(contatoDTO: CadastrarContatoDTO) : Contato!
+    atualizarContato(contatoDTO: AtualizarContatoDTO) : Contato!
+}
