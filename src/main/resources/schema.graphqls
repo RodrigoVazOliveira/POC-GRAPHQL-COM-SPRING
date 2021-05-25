@@ -5,6 +5,7 @@ schema {
 
 type Query {
     obterTodosContatos: [Contato]
+    findContatoById(id: Int) : Contato
 }
 
 type Contato {
@@ -20,6 +21,15 @@ input CadastrarContatoDTO {
     telefone: String
 }
 
+input AtualizarContatoDTO {
+    id: Int
+    nomeCompleto: String
+    email: String
+    telefone: String
+}
+
 type Mutation {
     cadastrarNovoContato(contatoDTO: CadastrarContatoDTO) : Contato!
+    atualizarContato(contatoDTO: AtualizarContatoDTO) : Contato!
+    deleteContatoById(id: Int) : Contato
 }

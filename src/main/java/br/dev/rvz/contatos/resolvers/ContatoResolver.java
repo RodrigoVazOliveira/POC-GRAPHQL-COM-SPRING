@@ -1,5 +1,6 @@
 package br.dev.rvz.contatos.resolvers;
 
+import br.dev.rvz.contatos.dtos.AtualizarContatoDTO;
 import br.dev.rvz.contatos.dtos.CadastrarContatoDTO;
 import br.dev.rvz.contatos.model.Contato;
 import br.dev.rvz.contatos.services.ContatoService;
@@ -20,5 +21,17 @@ public class ContatoResolver implements GraphQLQueryResolver, GraphQLMutationRes
 
     public Iterable<Contato> obterTodosContatos() {
         return contatoService.obterTodosContatos();
+    }
+
+    public Contato atualizarContato(AtualizarContatoDTO contatoDTO) {
+        return contatoService.atualizarContato(contatoDTO.converterDtoParaModelo());
+    }
+
+    public Contato findContatoById(Long id) {
+        return contatoService.procurarContatoPeloId(id);
+    }
+
+    public Contato deleteContatoById(Long id) {
+        return contatoService.deleteContatoPorId(id);
     }
 }

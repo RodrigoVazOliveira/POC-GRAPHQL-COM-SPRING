@@ -39,4 +39,10 @@ public class ContatoService {
 
         return contatoRepository.save(contatoSalvo);
     }
+
+    public Contato deleteContatoPorId(Long id) {
+        Contato contato = procurarContatoPeloId(id);
+        contatoRepository.delete(contato);
+        return contato;
+    }
 }
