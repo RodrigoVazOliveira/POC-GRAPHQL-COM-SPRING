@@ -30,4 +30,13 @@ public class ContatoService {
 
         return optionalContato.get();
     }
+
+    public Contato atualizarContato(Contato contato) {
+        Contato contatoSalvo = procurarContatoPeloId(contato.getId());
+        contatoSalvo.setNomeCompleto(contato.getNomeCompleto());
+        contatoSalvo.setEmail(contato.getEmail());
+        contatoSalvo.setTelefone(contato.getTelefone());
+
+        return contatoRepository.save(contatoSalvo);
+    }
 }
